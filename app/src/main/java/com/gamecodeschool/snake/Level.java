@@ -61,8 +61,10 @@ public class Level {
         this.screen = screen;
         this.snakeLength = 0;
         this.levelCounter = 1;
+        int obstacleSize = blockSize * 2;
         this.mBitmapObject = BitmapFactory.decodeResource(context.getResources(), R.drawable.obstacle);
-        this.mBitmapObject = Bitmap.createScaledBitmap(mBitmapObject, blockSize, blockSize, false);
+        //this.mBitmapObject = Bitmap.createScaledBitmap(mBitmapObject, blockSize, blockSize, false);
+        this.mBitmapObject = Bitmap.createScaledBitmap(mBitmapObject, obstacleSize, obstacleSize, false);
     }
 
     public void updateSnakeLength(int snakeLength) {
@@ -165,8 +167,11 @@ public class Level {
         gameOver = false;
         if (!gameOver) { // Draw obstacles only if the game is not over
             if (obstacleCoords != null && !obstacleCoords.isEmpty()) {
+                int halfObstacleSize = mBitmapObject.getWidth() / 2;
                 for (int key : obstacleCoords.keySet()) {
-                    canvas.drawBitmap(mBitmapObject, key * blockSize, obstacleCoords.get(key) * blockSize, paint);
+                    int x = key * blockSize - halfObstacleSize;
+                    int y = obstacleCoords.get(key) * blockSize - halfObstacleSize;
+                    canvas.drawBitmap(mBitmapObject, x, y, paint);
                 }
             }
         }
