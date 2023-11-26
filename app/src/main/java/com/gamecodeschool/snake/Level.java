@@ -61,7 +61,7 @@ public class Level {
         this.screen = screen;
         this.snakeLength = 0;
         this.levelCounter = 1;
-        this.mBitmapObject = BitmapFactory.decodeResource(context.getResources(), R.drawable.body);
+        this.mBitmapObject = BitmapFactory.decodeResource(context.getResources(), R.drawable.obstacle);
         this.mBitmapObject = Bitmap.createScaledBitmap(mBitmapObject, blockSize, blockSize, false);
     }
 
