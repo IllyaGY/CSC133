@@ -10,6 +10,7 @@ import android.graphics.Point;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class Level {
@@ -143,16 +144,20 @@ public class Level {
         }
     }
 
+
+
+
     public void randomObstacles() {
         gameOver = false;
         if (!gameOver) { // Only generate obstacles if the game is not over
             obstacleCoords = new HashMap<>();
             Random random = new Random();
+
             int level = levelCounter;
             if (levelCounter > 3) level = levelCounter - 3;
             int newX = (screen.x / levelObstacles.get(level));
             int newY = (screen.y / levelObstacles.get(level));
-            for (int i = 1; i < level * 6; i++) {
+            for (int i = 1; i < level * 2; i++) {
                 obstacleCoords.put((random.nextInt(newX - 1) + 1) * levelObstacles.get(level),
                         (random.nextInt(newY - 1) + 1) * levelObstacles.get(level));
             }
@@ -162,6 +167,8 @@ public class Level {
     public HashMap<Integer, Integer> getObstacleCoords() {
         return obstacleCoords;
     }
+
+
 
     public void draw(Canvas canvas, Paint paint) {
         gameOver = false;
