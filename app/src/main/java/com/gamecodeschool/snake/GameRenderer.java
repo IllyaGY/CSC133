@@ -16,18 +16,15 @@ public class GameRenderer extends SurfaceView {
     private Apple apple;
     private Level level;
     private int score;
-    private SurfaceHolder surfaceHolder;
     private boolean isPaused;
     private boolean isGameOver;
     private Context context;
 
-    public GameRenderer(Context context, SurfaceHolder surfaceHolder, Paint paint, Snake snake, Apple apple) {
+    public GameRenderer(Context context, SurfaceHolder SurfaceHolder, Paint Paint, Snake Snake, Apple Apple) {
         super(context);
         this.context = context;
-        this.surfaceHolder = surfaceHolder;
-        this.paint = paint;
-        this.snake = snake;
-        this.apple = apple;
+        paint = new Paint();
+        isGameOver = false; // Initialize the flag
     }
 
     public Canvas draw(boolean isGameOver, int score, boolean isPaused, Canvas canvas, Paint paint, Snake snake, Apple apple, Level level, int backgroundColor, Resources resources) {
@@ -38,7 +35,7 @@ public class GameRenderer extends SurfaceView {
         this.isGameOver = isGameOver;
         // Check and lock canvas
         // Fill the screen with a background color
-        canvas.drawColor(backgroundColor); // Example color, adjust as needed
+        canvas.drawColor(backgroundColor);
 
         if (this.isGameOver) {
             drawGameOverScreen();
@@ -68,12 +65,29 @@ public class GameRenderer extends SurfaceView {
     }
 
     private void drawGameOverScreen() {
+        paint.setColor(Color.argb(100, 160, 24, 24)); // Semi-transparent black background
+        canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), paint);
         paint.setColor(Color.RED); // Example color
         paint.setTextSize(250);
         canvas.drawText("Game Over", 200, 400, paint);
         canvas.drawText("Score: " + score, 200, 700, paint);
-        paint.setColor(Color.WHITE); // Example color
+        paint.setColor(Color.WHITE);
         paint.setTextSize(120);
         canvas.drawText(context.getResources().getString(R.string.tap_to_play), 200, 900, paint);
     }
+    private void drawPauseScreen() {
+        paint.setColor(Color.argb(100, 0, 0, 0)); // Semi-transparent black background
+        canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), paint);
+
+        paint.setColor(Color.YELLOW); // Example color
+        paint.setTextSize(180);
+        canvas.drawText("Resume, Press R", 200, 500, paint);
+        paint.setTextSize(160);
+        canvas.drawText("New Game, Press N", 200, 700, paint);
+
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(120);
+        canvas.drawText(context.getResources().getString(R.string.tap_to_play), 200, 900, paint);
+    }
+
 }
