@@ -43,7 +43,7 @@ public class GameRenderer extends SurfaceView {
             // Draw the score
             paint.setColor(Color.WHITE);
             paint.setTextSize(120);
-            canvas.drawText("Score: " + score, 20, 120, paint);
+            canvas.drawText("Score: " + score, 30, 140, paint);
 
             // Draw the apple and the snake
             apple.draw(canvas, paint);
@@ -52,7 +52,7 @@ public class GameRenderer extends SurfaceView {
 
             // Draw some text while paused
             if (isPaused) {
-                paint.setTextSize(250);
+                paint.setTextSize(300);
                 canvas.drawText(resources.getString(R.string.tap_to_play), 200, 700, paint);
             }
         }

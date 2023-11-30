@@ -12,7 +12,7 @@ import android.util.Log;
 import java.io.IOException;
 
 public class SoundManager {
-    private SoundPool mSP;
+    private SoundPool mSoundPool;
     private int mEat_ID = -1;
     private int mCrashID = -1;
 
@@ -24,12 +24,12 @@ public class SoundManager {
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                     .build();
 
-            mSP = new SoundPool.Builder()
+            mSoundPool = new SoundPool.Builder()
                     .setMaxStreams(5)
                     .setAudioAttributes(audioAttributes)
                     .build();
         } else {
-            mSP = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+            mSoundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         }
         loadSounds(context);
     }
@@ -41,20 +41,20 @@ public class SoundManager {
 
             // Prepare the sounds in memory
             descriptor = assetManager.openFd("get_apple.ogg");
-            mEat_ID = mSP.load(descriptor, 0);
+            mEat_ID = mSoundPool.load(descriptor, 0);
 
             descriptor = assetManager.openFd("snake_death.ogg");
-            mCrashID = mSP.load(descriptor, 0);
+            mCrashID = mSoundPool.load(descriptor, 0);
 
         } catch (IOException e) {  Log.e("error", "failed to load sound files");
         }
     }
 
     public void playEatSound() {
-        mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+        mSoundPool.play(mEat_ID, 1, 1, 0, 0, 1);
     }
 
     public void playCrashSound() {
-        mSP.play(mCrashID, 1, 1, 0, 0, 1);
+        mSoundPool.play(mCrashID, 1, 1, 0, 0, 1);
     }
 }
