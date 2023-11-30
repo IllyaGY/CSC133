@@ -284,43 +284,6 @@ class Snake {
         return segmentLocations.size();
     }
     // Handle changing direction
-//    void switchHeading(MotionEvent motionEvent) {
-//
-//        // Is the tap on the right hand side?
-//        if (motionEvent.getX() >= halfWayPoint) {
-//            switch (heading) {
-//                // Rotate right
-//                case UP:
-//                    heading = Heading.RIGHT;
-//                    break;
-//                case RIGHT:
-//                    heading = Heading.DOWN;
-//                    break;
-//                case DOWN:
-//                    heading = Heading.LEFT;
-//                    break;
-//                case LEFT:
-//                    heading = Heading.UP;
-//                    break;
-//
-//            }
-//        } else {
-//            // Rotate left
-//            switch (heading) {
-//                case UP:
-//                    heading = Heading.LEFT;
-//                    break;
-//                case LEFT:
-//                    heading = Heading.DOWN;
-//                    break;
-//                case DOWN:
-//                    heading = Heading.RIGHT;
-//                    break;
-//                case RIGHT:
-//                    heading = Heading.UP;
-//                    break;
-//            }
-//        }
-//    }
+
 
 }
