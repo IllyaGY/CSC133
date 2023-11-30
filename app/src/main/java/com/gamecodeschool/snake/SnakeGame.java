@@ -28,7 +28,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     private volatile boolean mPaused = true;
 
     // for playing sound effects
-    //private SoundPool mSP;
+    //private SoundPool mSoundPool;
     private int mEat_ID = -1;
     private int mCrashID = -1;
 
