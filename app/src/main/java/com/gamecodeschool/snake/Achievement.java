@@ -4,7 +4,11 @@ public class Achievement {
     private String name;
     private String description;
     private boolean achieved;
+    private SnakeGame snakeGame;
 
+    Achievement(SnakeGame snakeGame) {
+        this.snakeGame = snakeGame;
+    }
     public Achievement(String name, String description) {
         this.name = name;
         this.description = description;
