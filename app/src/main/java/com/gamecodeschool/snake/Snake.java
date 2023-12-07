@@ -32,7 +32,6 @@ class Snake {
     public enum Heading {
         UP, RIGHT, DOWN, LEFT
     }
-
     // Start by heading to the right
     private Heading heading;
 
@@ -168,7 +167,6 @@ class Snake {
 
     }
 
-
     public Point getHeading(int levelCounter){
         if(heading == Heading.UP) return new Point(segmentLocations.get(0).x, segmentLocations.get(0).y+1);
         else if(heading == Heading.DOWN) return new Point(segmentLocations.get(0).x, segmentLocations.get(0).y-1);
@@ -284,6 +282,5 @@ class Snake {
         return segmentLocations.size();
     }
     // Handle changing direction
-
 
 }
