@@ -62,7 +62,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     private Context mContext; // Add this variable to store the context
     private boolean isGameOver;
     public int begin = 0;
-
+    public int Achieved = 0;
     // This is the constructor method that gets called
     // from SnakeActivity
 
@@ -182,42 +182,36 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     // Update all the game objects
     public void update() {
-
+        if (mScore % 5 == 0 && mScore >= 1) {
+            setPaused(true);
+            Achieved = 1;
+        }
 
         // Move the snake
         mSnake.move();
 
         // Did the head of the snake eat the apple?
-        if(mSnake.checkDinner(mApple.getLocation())){
+        if(mSnake.checkDinner(mApple.getLocation())) {
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready!
             mApple.spawn();
 
             // Add to  mScore
             mScore = mScore + 1;
-
-
-            //Game's speed, changes based on the level
             if(mSnake.getSnakeLength()-level.getOldSnakeLength()>=5) {
 
-                if(level.getLevel()<3) {
+                if (level.getLevel() < 3) {
                     speed = level.updateSpeed(mSnake.getSnakeLength());
                     level.updateLevel();
                     level.updateSnakeLength(mSnake.getSnakeLength());
-                }
-                else if(level.getLevel()<6){
+                } else if (level.getLevel() < 6) {
                     level.updateLevel();
                 }
                 level.randomObstacles();
                 level.locationChecker(mSnake.getSegmentLocations(), mApple.getLocation());
                 level.checkDirHit(mSnake.getHeading(level.getLevel()));
             }
-
-
-
-
-
-            // Play a sound
+                // Play a sound
             //mSP.play(mEat_ID, 1, 1, 0, 0, 1);
             soundManager.playEatSound();
         }
@@ -240,7 +234,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     public void draw() {
         if (mSurfaceHolder.getSurface().isValid()) {
             mCanvas = mSurfaceHolder.lockCanvas();
-            mCanvas = gameRenderer.draw(begin, isGameOver, mScore, mPaused, mCanvas, mPaint, mSnake, mApple, level, level.updateBGColor(), mContext.getResources()); // Pass the context
+            mCanvas = gameRenderer.draw(Achieved, begin, isGameOver, mScore, mPaused, mCanvas, mPaint, mSnake, mApple, level, level.updateBGColor(), mContext.getResources()); // Pass the context
             mSurfaceHolder.unlockCanvasAndPost(mCanvas);
         }
     }
@@ -271,14 +265,35 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (mPaused && begin == 0){
+
+        if (mPaused && begin == 0) {
             mPaused = false;
             isGameOver = false;
             newGame();
+            begin = 1;
         }
-        begin = 1;
-        if(mPaused){
 
+        if (mPaused && Achieved == 1) {
+            Achieved = 0;
+            setPaused(false);
+            // Handle the case where Achieved is 1 outside of the mPaused block
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_C:
+                    // Resume the game
+                    setPaused(false);
+                    mScore+=1;
+                    mSnake.respawn(NUM_BLOCKS_WIDE, mNumBlocksHigh);
+                    return true;
+
+            }
+        }
+
+//        if (mScore % 5 == 0 && mScore >= 1) {
+//            setPaused(true);
+//            Achieved = 1;
+//        }
+
+        if (mPaused) {
             switch (keyCode) {
                 case KeyEvent.KEYCODE_R:
                     // Resume the game
@@ -292,8 +307,8 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             return true;
         }
-        if(!mPaused) {
 
+        if (!mPaused) {
             mSnake.setSnakeDirection(control.keyUpdater(mSnake, mSnake.getHeading(), keyCode));
         }
 

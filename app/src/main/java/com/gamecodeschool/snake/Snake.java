@@ -126,6 +126,17 @@ class Snake {
         // Start with a single snake segment
         segmentLocations.add(new Point(w / 2, h / 2));
     }
+    void respawn(int w, int h) {
+
+        // Reset the heading
+        heading = Heading.RIGHT;
+
+        // Delete the old contents of the ArrayList
+        //segmentLocations.clear();
+
+        // Start with a single snake segment
+        segmentLocations.add(new Point(w / 2, h / 2));
+    }
     ArrayList<Point> getSegmentLocations(){
         return segmentLocations;
     }
