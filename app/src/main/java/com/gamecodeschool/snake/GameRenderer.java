@@ -91,22 +91,5 @@ public class GameRenderer extends SurfaceView {
         paint.setTextSize(120);
         canvas.drawText(context.getResources().getString(R.string.tap_to_play), 200, 900, paint);
     }
-   // private void drawIntroScreen(){
-      //  paint.setColor(Color.Black);
-        //canvas.drawRect(0,0,canvas.getWidth(), canvas.getHeight(), paint);
 
-     //   paint.setColor(Color.WHITE);
-        // paint.setTextSize(50);
-
-       // canvas.drawText("Welcome to Snake Game!", 100, 200, paint);
-        //canvas.drawText("How to Play:", 100, 300, paint);
-        //canvas.drawText("Use arrow keys to move the snake.", 100, 400, paint);
-        //canvas.drawText("Eat apples to grow and gain points.", 100, 500, paint);
-        //canvas.drawText("Avoid hitting the walls or yourself.", 100, 600, paint);
-        //canvas.drawText("Tap anywhere to start!", 100, 700, paint);
-
-
-
-
-    }
-//}
+}
