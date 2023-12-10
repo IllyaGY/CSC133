@@ -115,7 +115,7 @@ public class GameRenderer extends SurfaceView {
         canvas.drawText("Use arrow keys to move the snake tap W:⬆️ A:⬅️ S:⬇️ D:➡️", 100, 500, paint);
         canvas.drawText("Eat apples to grow and gain points:  \uD83C\uDF4E \uD83C\uDF4E \uD83C\uDF4E \uD83C\uDF4E", 100, 600, paint);
         canvas.drawText("Avoid hitting the walls or yourself:  ☠️☠️☠️☠️", 100, 700, paint);
-        canvas.drawText("Use P to pause and C to continue", 100, 800, paint);
+        canvas.drawText("Use Enter Key to pause and C to continue", 100, 800, paint);
 
         paint.setColor(Color.GREEN);
         paint.setTextSize(60);
