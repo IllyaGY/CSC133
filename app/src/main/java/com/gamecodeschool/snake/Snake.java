@@ -127,15 +127,15 @@ class Snake {
         segmentLocations.add(new Point(w / 2, h / 2));
     }
     void respawn(int w, int h, int n) {
-
+        segmentLocations.clear();
         // Reset the heading
         heading = Heading.RIGHT;
-
         // Delete the old contents of the ArrayList
-        segmentLocations.clear();
         Random random = new Random();
+        w = random.nextInt(w);
+        h = random.nextInt(h);
         for (int i = 0; i < n; i++) {
-            segmentLocations.add(new Point(random.nextInt(w), random.nextInt(h)));
+            segmentLocations.add(new Point(w,h));
         }
     }
     ArrayList<Point> getSegmentLocations(){

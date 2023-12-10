@@ -181,10 +181,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     // Update all the game objects
     public void update() {
-        if (mScore % 5 == 0 && mScore >= 1) {
-            setPaused(true);
-            Achieved = 1;
-        }
+
 
         // Move the snake
         mSnake.move();
@@ -197,6 +194,10 @@ class SnakeGame extends SurfaceView implements Runnable{
 
             // Add to  mScore
             mScore = mScore + 1;
+            if (mScore % 5 == 0 && mScore >= 1) {
+                setPaused(true);
+                Achieved = 1;
+            }
             if(mSnake.getSnakeLength()-level.getOldSnakeLength()>=5) {
 
                 if (level.getLevel() < 3) {
