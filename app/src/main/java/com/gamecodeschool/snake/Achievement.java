@@ -1,5 +1,6 @@
 package com.gamecodeschool.snake;
 
+
 public class Achievement {
     private String name;
     private String description;
@@ -27,7 +28,7 @@ public class Achievement {
 
     public void rewardPlayer() {
         // Display message for the player
-        System.out.println("New level unlocked!");
+       // canvas.drawText("NEW LEVEL UNLOCKED", 200, 400, paint);
     }
 
     // Getters and setters
