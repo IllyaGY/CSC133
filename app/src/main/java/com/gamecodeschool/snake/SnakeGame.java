@@ -129,8 +129,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         level.randomObstacles();
         level.locationChecker(mSnake.getSegmentLocations(), mApple.getLocation());
         level.checkDirHit(mSnake.getHeading(level.getLevel()));
-
-
+        level.isDead();
         // Reset the mScore
         mScore = 0;
 
@@ -282,7 +281,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                     // Resume the game
                     setPaused(false);
                     mScore+=1;
-                    mSnake.respawn(NUM_BLOCKS_WIDE, mNumBlocksHigh);
+                    mSnake.respawn(NUM_BLOCKS_WIDE, mNumBlocksHigh, mSnake.getSnakeLength());
                     return true;
 
             }

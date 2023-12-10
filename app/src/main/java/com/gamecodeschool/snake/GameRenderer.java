@@ -83,7 +83,9 @@ public class GameRenderer extends SurfaceView {
     private void drawPauseScreen() {
         paint.setColor(Color.argb(100, 0, 0, 0)); // Semi-transparent black background
         canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), paint);
-
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(180);
+        canvas.drawText("Game Paused", 480, 300, paint);
         paint.setColor(Color.YELLOW);
         paint.setTextSize(180);
         canvas.drawText("Resume, Press R", 200, 500, paint);

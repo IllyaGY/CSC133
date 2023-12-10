@@ -7,10 +7,10 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 class Snake {
 
@@ -126,16 +126,17 @@ class Snake {
         // Start with a single snake segment
         segmentLocations.add(new Point(w / 2, h / 2));
     }
-    void respawn(int w, int h) {
+    void respawn(int w, int h, int n) {
 
         // Reset the heading
         heading = Heading.RIGHT;
 
         // Delete the old contents of the ArrayList
-        //segmentLocations.clear();
-
-        // Start with a single snake segment
-        segmentLocations.add(new Point(w / 2, h / 2));
+        segmentLocations.clear();
+        Random random = new Random();
+        for (int i = 0; i < n; i++) {
+            segmentLocations.add(new Point(random.nextInt(w), random.nextInt(h)));
+        }
     }
     ArrayList<Point> getSegmentLocations(){
         return segmentLocations;
