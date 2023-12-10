@@ -139,7 +139,11 @@ public class Level {
 
     public void checkDirHit(Point objectCoords) {
         for (int key : obstacleCoords.keySet()) {
-            if (key == objectCoords.x && obstacleCoords.get(key) == objectCoords.y)
+            int x = objectCoords.x - levelCounter;
+            int y = objectCoords.y - levelCounter;
+            int x1 = objectCoords.x + levelCounter;
+            int y1 = objectCoords.y + levelCounter;
+            if (key > x && key<x1 && obstacleCoords.get(key) > y  && obstacleCoords.get(key) < y1)
                 obstacleCoords.remove(key);
         }
     }
